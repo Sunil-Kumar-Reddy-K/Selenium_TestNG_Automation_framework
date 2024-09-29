@@ -1,8 +1,10 @@
 package tests;
 
 import base.BaseTest;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+@Listeners(utils.TestListener.class)
 public class LoginTest extends BaseTest {
 
     @Test
