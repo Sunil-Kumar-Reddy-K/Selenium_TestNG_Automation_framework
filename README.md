@@ -15,6 +15,8 @@ This is a Selenium automation framework designed for UI testing with support for
 ---
 
 ## (Implemented) TestNG framework folder structure
+
+```bash
 SeleniumAutomationFramework/
 ├── pom.xml                           # Maven dependency management
 ├── testng.xml                         # TestNG suite configuration
@@ -48,10 +50,11 @@ SeleniumAutomationFramework/
 │
 ├── reports/                           # Extent reports and logs generated from tests
 │   └── extent-reports/                # Folder to store the Extent report files
-
+```
 
 ## (Example) Cucumber Framework Folder Structure
 
+```bash
 SeleniumAutomationFramework/
 ├── pom.xml                           # Maven dependency management
 ├── testng.xml                         # TestNG suite configuration
@@ -93,7 +96,7 @@ SeleniumAutomationFramework/
 │
 ├── reports/                           # Extent reports and logs generated from tests
 │   └── extent-reports/                # Folder to store the Extent report files
-
+```
 
 ### Execution Flow:
 >1.	When you run the tests (via Maven, IntelliJ, or a CI/CD pipeline), TestNG or Cucumber will pick up the classes and run the tests based on the configuration in testng.xml.
