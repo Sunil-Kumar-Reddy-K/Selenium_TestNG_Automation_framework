@@ -20,7 +20,7 @@ jobs:
         uses: actions/setup-java@v4
         with:
           java-version: '21'
-          distribution: 'temurin'  # You can use 'zulu', 'adopt', etc.
+          distribution: 'temurin'
 
       - name: Cache Maven dependencies
         uses: actions/cache@v4
@@ -48,5 +48,4 @@ jobs:
 
       - name: Notify on Failure
         if: failure()
-        run: |
-          echo "Tests failed. Check the logs for details."
+        run: echo "Tests failed. Check the logs for details."
