@@ -1,0 +1,52 @@
+name: Java CI with Selenium Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+          distribution: 'temurin'  # You can use 'zulu', 'adopt', etc.
+
+      - name: Cache Maven dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: Build with Maven
+        run: mvn clean install
+
+      - name: Run Selenium Tests
+        run: mvn test
+
+      - name: Publish Test Reports
+        if: success()
+        run: mvn surefire-report:report
+
+      - name: Archive Test Reports
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-reports
+          path: target/site/surefire-report.html
+
+      - name: Notify on Failure
+        if: failure()
+        run: |
+          echo "Tests failed. Check the logs for details."
